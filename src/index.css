@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 140 20% 97%;
+    --foreground: 150 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 30% 10%;
+
+    --primary: 152 60% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 145 30% 92%;
+    --secondary-foreground: 150 30% 15%;
+
+    --muted: 140 15% 93%;
+    --muted-foreground: 150 10% 45%;
+
+    --accent: 80 60% 50%;
+    --accent-foreground: 150 30% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 145 20% 88%;
+    --input: 145 20% 88%;
+    --ring: 152 60% 36%;
+
+    --radius: 0.75rem;
+
+    --eco-emerald: 152 60% 36%;
+    --eco-leaf: 145 63% 42%;
+    --eco-forest: 155 40% 18%;
+    --eco-lime: 80 60% 50%;
+    --eco-mint: 160 40% 90%;
+    --eco-sky: 195 60% 50%;
+    --eco-earth: 30 30% 45%;
+    --eco-sand: 40 30% 92%;
+
+    --glass-bg: 0 0% 100% / 0.6;
+    --glass-border: 0 0% 100% / 0.3;
+    --glass-shadow: 150 30% 10% / 0.08;
+
+    --gradient-hero: linear-gradient(135deg, hsl(152 60% 36%), hsl(145 63% 42%), hsl(80 60% 50%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100% / 0.8), hsl(0 0% 100% / 0.4));
+    --gradient-accent: linear-gradient(135deg, hsl(152 60% 36%), hsl(195 60% 50%));
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 152 60% 36%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 145 30% 92%;
+    --sidebar-accent-foreground: 150 30% 15%;
+    --sidebar-border: 145 20% 88%;
+    --sidebar-ring: 152 60% 36%;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  .dark {
+    --background: 155 30% 6%;
+    --foreground: 140 20% 92%;
+
+    --card: 155 25% 10%;
+    --card-foreground: 140 20% 92%;
+
+    --popover: 155 25% 10%;
+    --popover-foreground: 140 20% 92%;
+
+    --primary: 152 55% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 155 20% 16%;
+    --secondary-foreground: 140 20% 85%;
+
+    --muted: 155 15% 14%;
+    --muted-foreground: 145 10% 55%;
+
+    --accent: 80 50% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 155 15% 18%;
+    --input: 155 15% 18%;
+    --ring: 152 55% 45%;
+
+    --eco-emerald: 152 55% 45%;
+    --eco-leaf: 145 55% 48%;
+    --eco-forest: 155 30% 75%;
+    --eco-lime: 80 50% 45%;
+    --eco-mint: 160 20% 16%;
+    --eco-sky: 195 50% 50%;
+    --eco-earth: 30 20% 55%;
+    --eco-sand: 40 15% 15%;
+
+    --glass-bg: 155 25% 10% / 0.7;
+    --glass-border: 155 15% 25% / 0.4;
+    --glass-shadow: 0 0% 0% / 0.3;
+
+    --gradient-hero: linear-gradient(135deg, hsl(152 65% 55%), hsl(80 60% 55%), hsl(152 65% 50%));
+    --gradient-card: linear-gradient(135deg, hsl(155 25% 12% / 0.8), hsl(155 25% 8% / 0.4));
+    --gradient-accent: linear-gradient(135deg, hsl(152 55% 45%), hsl(195 50% 50%));
+
+    --sidebar-background: 155 25% 8%;
+    --sidebar-foreground: 140 20% 85%;
+    --sidebar-primary: 152 55% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 155 20% 16%;
+    --sidebar-accent-foreground: 140 20% 85%;
+    --sidebar-border: 155 15% 18%;
+    --sidebar-ring: 152 55% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+#lovable-badge {
+  display: none !important;
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-xl border;
+    background: hsl(var(--glass-bg));
+    border-color: hsl(var(--glass-border));
+    box-shadow: 0 8px 32px hsl(var(--glass-shadow));
+    backdrop-filter: blur(12px);
+  }
+
+  .eco-gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .eco-gradient-bg {
+    background: var(--gradient-hero);
+  }
+}
