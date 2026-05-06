@@ -1,36 +1,51 @@
-# 🌍 GreenTrack — Carbon Footprint Tracker
+# 🌍 GreenTrack — AI-Powered Carbon Footprint Tracker
 
-GreenTrack is a modern, AI-powered web application that helps users track, visualize, and reduce their carbon footprint. Built with React, TypeScript, and Supabase, it features interactive dashboards, smart emission highlighting, and an AI chatbot sustainability assistant.
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-green--track--pi.vercel.app-00C853?style=for-the-badge)](https://green-track-pi.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-kruthika771%2FGreenTrack-181717?style=for-the-badge&logo=github)](https://github.com/kruthika771/GreenTrack)
+
+GreenTrack is a modern, AI-powered web application that helps users track, visualize, and reduce their carbon footprint. Built with React, TypeScript, and Supabase, it features interactive dashboards, smart emission highlighting, and **EcoBot** — an AI chatbot sustainability assistant powered by Groq AI.
+
+> 🚀 **Live at:** [https://green-track-pi.vercel.app](https://green-track-pi.vercel.app)
+
+---
 
 ## ✨ Features
 
 ### 🧮 Carbon Footprint Calculator
-- Calculate emissions across **Electricity**, **Transport**, **Food**, and **Waste**
+- Calculate emissions across **Electricity**, **Transport**, **Food**, and **Waste** categories
 - Real-time breakdown with category-level insights
+- Save multiple entries over time for trend tracking
 
 ### 📊 Interactive Dashboard
-- **Pie Chart & Bar Chart** with automatic highest-emission highlighting (red)
-- **Clickable graphs** — click any bar/slice to see detailed reduction tips
-- **Highest Emission Alert Banner** with one-click action
-- **Progress Over Time** line chart (multi-entry tracking)
-- **Clickable Entries Card** — view all past calculations with full breakdown
-- **Badges & Achievements** system
+- **Pie Chart & Bar Chart** with automatic highest-emission highlighting (red/orange)
+- **Clickable graphs** — click any bar or pie slice to see detailed reduction tips
+- **Highest Emission Alert Banner** at the top with one-click navigation
+- **Clickable Entries Card** — view all past calculations with full breakdown per entry
+- **Progress Over Time** — line chart tracking emission trends across entries
+- **Eco Score** — score out of 100 based on total monthly emissions
+- **Badges & Achievements** — gamified sustainability rewards
+- **PDF Export** — download a professional carbon report
 
-### 🤖 EcoBot — AI Chatbot Assistant
-- Floating chatbot widget available on every page
-- Powered by **Groq AI** (Llama 3.3 70B) for lightning-fast responses
-- **Context-aware** — reads your actual carbon data and gives personalized advice
-- **Quick question buttons** for instant insights
-- **Multi-language support**: English, हिंदी, తెలుగు, ಕನ್ನಡ
-- **Voice input** (browser Speech Recognition API)
-- **Chat history** saved locally (persists across sessions)
+### 🤖 EcoBot — AI Sustainability Assistant
+- **Floating chatbot widget** available on every page (bottom-right corner)
+- Powered by **Groq AI** (Llama 3.3 70B Versatile) for lightning-fast responses
+- **Context-aware** — automatically reads your actual carbon footprint data from Supabase and gives personalized, data-driven advice
+- **Quick question buttons** for instant insights:
+  - 🔍 Why is my emission high?
+  - 💡 How to reduce my footprint?
+  - 📊 Which category is highest?
+  - 🌱 Eco-friendly tips
+- **Multi-language support**: English, हिंदी (Hindi), తెలుగు (Telugu), ಕನ್ನಡ (Kannada)
+- **Voice input** via browser Speech Recognition API
+- **Chat history** saved in localStorage (persists across sessions)
+- **Typing animation** with smooth spring transitions
 
 ### 🔐 Authentication
 - Email/Password signup & login
 - Google OAuth (via Supabase Auth)
+- Protected dashboard & calculator routes
 
-### 📄 PDF Export
-- Export your full carbon report as a professional PDF
+---
 
 ## 🛠️ Tech Stack
 
@@ -41,52 +56,63 @@ GreenTrack is a modern, AI-powered web application that helps users track, visua
 | **UI Components** | shadcn/ui + Radix UI |
 | **Charts** | Recharts |
 | **Animations** | Framer Motion |
-| **Backend & Auth** | Supabase (PostgreSQL) |
+| **Backend & Auth** | Supabase (PostgreSQL + Auth) |
 | **AI Chatbot** | Groq API (Llama 3.3 70B) |
 | **PDF Generation** | jsPDF + jspdf-autotable |
 | **Icons** | Lucide React |
 | **Routing** | React Router DOM |
+| **Hosting** | Vercel |
+
+---
 
 ## 📁 Project Structure
 
 ```
-green-tracker-planet-main/
+GreenTrack/
 ├── public/
-│   └── _redirects          # Netlify SPA routing
+│   ├── _redirects              # Netlify SPA routing
+│   ├── favicon.ico
+│   └── robots.txt
 ├── src/
 │   ├── components/
-│   │   ├── EcoChatbot.tsx   # AI chatbot widget
-│   │   ├── AuthModal.tsx    # Login/signup modal
-│   │   ├── Layout.tsx       # App layout & nav
-│   │   └── ui/              # shadcn/ui components
+│   │   ├── EcoChatbot.tsx      # 🤖 AI chatbot widget (Groq + multi-language)
+│   │   ├── AuthModal.tsx       # Login/signup modal
+│   │   ├── CalculationResults.tsx
+│   │   ├── Layout.tsx          # App layout & navigation
+│   │   ├── NavLink.tsx
+│   │   └── ui/                 # shadcn/ui components
 │   ├── contexts/
-│   │   └── AuthContext.tsx   # Auth state management
+│   │   └── AuthContext.tsx     # Auth state management
 │   ├── integrations/
-│   │   └── supabase/        # Supabase client config
+│   │   └── supabase/           # Supabase client & types
 │   ├── lib/
-│   │   └── carbon.ts        # Carbon calculation engine
+│   │   ├── carbon.ts           # Carbon calculation engine
+│   │   └── utils.ts
 │   ├── pages/
-│   │   ├── Home.tsx
-│   │   ├── CalculatorPage.tsx
-│   │   ├── DashboardPage.tsx # Main dashboard with charts
-│   │   ├── TipsPage.tsx
-│   │   └── AboutPage.tsx
-│   ├── App.tsx
-│   └── main.tsx
+│   │   ├── Home.tsx            # Landing page
+│   │   ├── CalculatorPage.tsx  # Carbon calculator form
+│   │   ├── DashboardPage.tsx   # Interactive dashboard + charts
+│   │   ├── TipsPage.tsx        # Eco tips
+│   │   └── AboutPage.tsx       # About page
+│   ├── App.tsx                 # Root app with routing + EcoBot
+│   ├── main.tsx
+│   └── index.css               # Global styles
 ├── supabase/
-│   └── migrations/          # Database schema
-├── .env.example             # Environment variable template
-├── index.html
-├── package.json
+│   └── migrations/             # Database schema (profiles, carbon_history)
+├── .env.example                # Environment variable template
+├── vercel.json                 # Vercel SPA routing config
 ├── tailwind.config.ts
 ├── vite.config.ts
+├── package.json
 └── README.md
 ```
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v18+)
+- [Node.js](https://nodejs.org/) v18+
 - A [Supabase](https://supabase.com/) project
 - A [Groq](https://console.groq.com/) API key (free tier available)
 
@@ -104,7 +130,7 @@ green-tracker-planet-main/
    ```
 
 3. **Set up environment variables**:
-   Create a `.env` file in the project root:
+   Copy `.env.example` to `.env` and fill in your keys:
    ```env
    VITE_SUPABASE_PROJECT_ID="your_supabase_project_id"
    VITE_SUPABASE_URL="https://your_project_id.supabase.co"
@@ -112,8 +138,8 @@ green-tracker-planet-main/
    VITE_GROQ_API_KEY="your_groq_api_key"
    ```
 
-4. **Run the Supabase migration**:
-   Execute the SQL in `supabase/migrations/` in your Supabase SQL Editor to create the required tables (`profiles`, `carbon_history`).
+4. **Run Supabase migration**:
+   Execute the SQL in `supabase/migrations/` in your Supabase SQL Editor to create the `profiles` and `carbon_history` tables.
 
 5. **Start the development server**:
    ```bash
@@ -122,17 +148,54 @@ green-tracker-planet-main/
 
 6. Open `http://localhost:8080` in your browser.
 
+---
+
 ## 🌐 Deployment
 
-This project is configured for **Netlify** deployment:
-- The `public/_redirects` file handles SPA client-side routing
-- Add all `.env` variables to Netlify → Site Settings → Environment Variables
-- Update your Supabase Auth "Site URL" to match your Netlify domain
+This project is deployed on **Vercel**:
+
+| Setting | Value |
+|---------|-------|
+| **Platform** | [Vercel](https://vercel.com) |
+| **Framework** | Vite |
+| **Build Command** | `npm run build` |
+| **Output Directory** | `dist` |
+| **Live URL** | [green-track-pi.vercel.app](https://green-track-pi.vercel.app) |
+
+### Deploy Your Own
+
+1. Fork this repo
+2. Import it on [vercel.com/new](https://vercel.com/new)
+3. Add all 4 environment variables from `.env.example`
+4. Click Deploy
+5. Update Supabase Auth → **Site URL** & **Redirect URLs** with your new Vercel domain
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+Modern landing page with eco-themed design and animated elements.
+
+### 📊 Dashboard
+Interactive charts with highest-emission highlighting, clickable entries, badges, and PDF export.
+
+### 🤖 EcoBot
+Floating AI assistant with multi-language support, voice input, and personalized sustainability advice.
+
+---
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/kruthika771/GreenTrack/issues).
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [issues page](https://github.com/kruthika771/GreenTrack/issues).
 
 ## 📝 License
 
 This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+<p align="center">
+  Made with 💚 for a greener planet 🌍
+</p>
